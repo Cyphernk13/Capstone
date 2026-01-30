@@ -1,0 +1,67 @@
+name: Project 7 CI Validation
+
+
+
+on:
+
+  push:
+
+    branches: [ main ]
+
+  pull_request:
+
+
+
+jobs:
+
+  terraform-check:
+
+    name: Terraform Validate
+
+    runs-on: ubuntu-latest
+
+
+
+    # This tells the server to look inside your 'project7' folder
+
+    defaults:
+
+      run:
+
+        working-directory: ./project7
+
+
+
+    steps:
+
+      - name: Checkout repo
+
+        uses: actions/checkout@v4
+
+
+
+      - name: Setup Terraform
+
+        uses: hashicorp/setup-terraform@v3
+
+        with:
+
+          terraform_version: 1.6.6
+
+
+
+      - name: Terraform Init
+
+        run: terraform init -backend=false
+
+
+
+      - name: Terraform Format Check
+
+        run: terraform fmt -check
+
+
+
+      - name: Terraform Validate
+
+        run: terraform validate
