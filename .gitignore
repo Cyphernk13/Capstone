@@ -7,3 +7,5 @@
 *.tfstate.backup
 
 *.log
+
+*.pem
