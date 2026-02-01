@@ -1,0 +1,43 @@
+---
+
+- name: Configure Local Web Server
+
+  hosts: localhost
+
+  connection: local
+
+  become: yes
+
+  tasks:
+
+    - name: Install Nginx
+
+      apt:
+
+        name: nginx
+
+        state: present
+
+        update_cache: yes
+
+
+
+    - name: Start Nginx
+
+      service:
+
+        name: nginx
+
+        state: started
+
+        enabled: yes
+
+
+
+    - name: Deploy Custom Page
+
+      copy:
+
+        content: "<h1>Project 15: Deployed via Ansible (Local Mode)</h1>"
+
+        dest: /var/www/html/index.html
