@@ -1,0 +1,37 @@
+INCIDENT REPORT - PROJECT 24
+
+----------------------------
+
+Date: 2026-02-01
+
+Service: Nginx Web Server
+
+Severity: High
+
+
+
+INCIDENT DESCRIPTION:
+
+The web server stopped responding to HTTP requests. 'curl localhost' returned "Connection refused".
+
+
+
+ROOT CAUSE:
+
+The Nginx process was terminated unexpectedly (simulated via 'pkill -9' command).
+
+
+
+RECOVERY STEPS:
+
+1. Detected outage via CLI verification.
+
+2. Executed 'sudo systemctl start nginx' to restart the service daemon.
+
+3. Verified service availability using 'curl -I localhost'.
+
+
+
+STATUS:
+
+Resolved. Service is back online (HTTP 200 OK).
